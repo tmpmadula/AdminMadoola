@@ -78,9 +78,9 @@ export default function Landing() {
             <div className="udlite-search-form-autocomplete billboard--search-bar--3s2y1 udlite-form-group">
               <label className="udlite-sr-only udlite-form-label udlite-heading-sm">
                 For more info email:{" "}
-                <a href="mailto:support@madoola.com">
+                <a href="mailto:support@Planturion.com">
                   {" "}
-                  <b>Madoola</b>
+                  <b>Planturion</b>
                 </a>
               </label>
             </div>
@@ -100,7 +100,7 @@ export default function Landing() {
       <Grid fluid={true}>
         <Helmet>
           <title>Home</title>
-          <meta name="description" content="Madoola" />
+          <meta name="description" content="Planturion" />
         </Helmet>
         <Heading>Top Rated Products</Heading>
         <Heading size="xs">(Login to get more details.)</Heading>

@@ -169,7 +169,7 @@ export default () => {
       <FormWrapper>
         <FormFields>
           <LogoWrapper>
-            <LogoImage src={Logoimage} alt="Madoola" />
+            <LogoImage src={Logoimage} alt="Planturion" />
           </LogoWrapper>
         </FormFields>
         <Button
@@ -200,7 +200,7 @@ export default () => {
               <Spacer />
               <Divider />
               <FormFields>
-                <Heading size="md">Sign up to Madoola</Heading>
+                <Heading size="md">Sign up to Planturion</Heading>
               </FormFields>
 
               <FormFields>
@@ -209,7 +209,7 @@ export default () => {
                   type="username"
                   name="username"
                   component={MyInput}
-                  // placeholder="joe@madoola.com"
+                  // placeholder="joe@Planturion.com"
                 />
                 {errors.username && touched.username && (
                   <Error>{errors.username}</Error>

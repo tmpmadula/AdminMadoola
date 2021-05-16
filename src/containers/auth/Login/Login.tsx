@@ -203,7 +203,7 @@ export default () => {
               <Spacer />
               <Divider />
               <FormFields>
-                <Heading size="md">Sign in to Madoola</Heading>
+                <Heading size="md">Sign in to Planturion</Heading>
               </FormFields>
               <FormFields>
                 <FormLabel>Email</FormLabel>
@@ -211,7 +211,7 @@ export default () => {
                   type="email"
                   name="username"
                   component={MyInput}
-                  //placeholder="joe@madoola.com"
+                  //placeholder="joe@Planturion.com"
                 />
                 {errors.username && touched.username && (
                   <Error>{errors.username}</Error>

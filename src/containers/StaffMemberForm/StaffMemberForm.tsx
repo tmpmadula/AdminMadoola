@@ -53,9 +53,10 @@ type Props = any;
 
 const StuffMemberForm: React.FC<Props> = (props) => {
   const dispatch = useDrawerDispatch();
-  const closeDrawer = useCallback(() => dispatch({ type: "CLOSE_DRAWER" }), [
-    dispatch,
-  ]);
+  const closeDrawer = useCallback(
+    () => dispatch({ type: "CLOSE_DRAWER" }),
+    [dispatch]
+  );
   const { register, handleSubmit } = useForm();
   const [country, setCountry] = React.useState(undefined);
   const [checked, setChecked] = React.useState(true);
@@ -158,7 +159,7 @@ const StuffMemberForm: React.FC<Props> = (props) => {
             <Col lg={4}>
               <FieldDetails>
                 Expand or restrict user’s permissions to access certain part of
-                Madoola system.
+                Planturion system.
               </FieldDetails>
             </Col>
 

@@ -212,7 +212,7 @@ const Topbar = ({ refs, onMenuItemClick }: any) => {
         >
           <NotificationIconWrapper>
             <InputGroup>
-              <Input type="tel" placeholder="Search Madoola" />
+              <Input type="tel" placeholder="Search Planturion" />
               <InputLeftElement
                 pointerEvents="none"
                 children={<Search2Icon color="gray.300" />}
@@ -278,7 +278,7 @@ const Topbar = ({ refs, onMenuItemClick }: any) => {
                 exact={false}
                 onClick={close}
               >
-                Madoola Support
+                Planturion Support
               </NavLink>
               <LogoutBtn
                 onClick={() => {

@@ -140,7 +140,7 @@ export default function Home() {
     <Grid fluid={true}>
       <Helmet>
         <title>Home</title>
-        <meta name="description" content="Madoola" />
+        <meta name="description" content="Planturion" />
       </Helmet>
 
       <Row>

@@ -31,7 +31,7 @@ export const InLineLoader: FC<InLineLoaderProps> = memo((props) => {
         width={100}
         timeout={5000}
       />
-      <LogoImage src={Logoimage} alt="madoola" />
+      <LogoImage src={Logoimage} alt="Planturion" />
     </Container>
   );
 });

@@ -8,7 +8,7 @@ const FreeInvoice: React.FC<Props> = (props) => {
   return (
     <>
       <div className="app">
-        <h1 className="center fs-30">Madoola Invoice Generator</h1>
+        <h1 className="center fs-30">Planturion Invoice Generator</h1>
         <InvoicePage />
       </div>
       <br />

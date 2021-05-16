@@ -24,7 +24,7 @@ import { FacebookIcon, FacebookShareButton } from "react-share";
 export const ProductView = ({ isOpen, onClose, ProductData }) => {
   const initialRef = useRef();
   const finalRef = useRef();
-  let shareUrl = `https://www.madoola.com/#/views/${ProductData.id}`;
+  let shareUrl = `https://www.Planturion.com/#/views/${ProductData.id}`;
 
   return (
     <Modal

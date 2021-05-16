@@ -104,7 +104,7 @@ function App() {
               {!isAuthenticating && (
                   <Helmet>
                     <title>{title}</title>
-                    <meta name="description" content="Madoola" />
+                    <meta name="description" content="Planturion" />
                   </Helmet>
                 ) && <Routes {...props} />}
             </HashRouter>

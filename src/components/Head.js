@@ -19,7 +19,7 @@ Head.propTypes = {
 };
 
 Head.defaultProps = {
-  title: "madoola",
+  title: "Planturion",
 };
 
 export default Head;

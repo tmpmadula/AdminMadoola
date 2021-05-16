@@ -22,7 +22,7 @@ const prod = {
   },
   apiGateway: {
     REGION: "af-south-1",
-    URL: "https://api.madoola.com/prod",
+    URL: "https://api.Planturion.com/prod",
   },
   cognito: {
     REGION: "us-east-1",

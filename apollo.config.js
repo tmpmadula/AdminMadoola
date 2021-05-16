@@ -5,7 +5,7 @@ module.exports = {
     name: "home",
     service: {
       localSchemaFile: "schema.graphql",
-      name: "madoola",
+      name: "Planturion",
     },
   },
 };
