@@ -1,127 +1,84 @@
-import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
-import { HashRouter } from "react-router-dom";
-import { Client as Styletron } from "styletron-engine-atomic";
-import { Provider as StyletronProvider } from "styletron-react";
-import { BaseProvider } from "baseui";
-import { theme } from "./theme";
-import Routes from "./routes";
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  HttpLink,
-  ApolloLink,
-} from "@apollo/client";
-import * as serviceWorker from "./serviceWorker";
-import "./theme/global.css";
-import Amplify, { Auth } from "aws-amplify";
-import { ChakraProvider } from "@chakra-ui/react";
+// mock api
+import './_apis_';
 
-import { Helmet } from "react-helmet";
-import ReactGA from "react-ga";
-import { title } from "process";
-const TRACKING_ID = "UA-174941276-1"; // YOUR_OWN_TRACKING_ID
-ReactGA.initialize(TRACKING_ID);
-ReactGA.pageview(window.location.pathname + window.location.search);
+// i18n
+import './locales/i18n';
 
-const config = require("./config").default;
+// highlight
+import './utils/highlight';
 
-const httpLink = new HttpLink({ uri: process.env.REACT_APP_API_URL });
+// scroll bar
+import 'simplebar/src/simplebar.css';
 
-const authLink = new ApolloLink((operation, forward) => {
-  operation.setContext({
-    headers: {
-      "x-api-key": "9bRvVcK9Ws1XGkFDEzwrD7SYf2qRdIpO30E945Sa",
-    },
-  });
+// map
+import 'mapbox-gl/dist/mapbox-gl.css';
 
-  return forward(operation);
-});
+// lightbox
+import 'react-image-lightbox/style.css';
 
-const client2 = new ApolloClient({
-  link: authLink.concat(httpLink), // Chain it with the HttpLink
-  cache: new InMemoryCache(),
-});
+// editor
+import 'react-quill/dist/quill.snow.css';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
-Amplify.configure({
-  Auth: {
-    mandatorySignIn: true,
-    region: config.cognito.REGION,
-    userPoolId: config.cognito.USER_POOL_ID,
-    identityPoolId: config.cognito.IDENTITY_POOL_ID,
-    userPoolWebClientId: config.cognito.APP_CLIENT_ID,
-  },
-  Storage: {
-    region: config.s3.REGION,
-    bucket: config.s3.BUCKET,
-    identityPoolId: config.cognito.IDENTITY_POOL_ID,
-  },
-  API: {
-    endpoints: [
-      {
-        name: "tru-fan",
-        endpoint: config.apiGateway.URL,
-        region: config.apiGateway.REGION,
-      },
-    ],
-  },
-});
+// slick-carousel
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
-function App() {
-  const engine = new Styletron();
-  const [isAuthenticated, userHasAuthenticated] = useState(false);
-  const [isAuthenticating, setIsAuthenticating] = useState(true);
+// lazy image
+import 'lazysizes';
+import 'lazysizes/plugins/attrchange/ls.attrchange';
+import 'lazysizes/plugins/object-fit/ls.object-fit';
+import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
-  useEffect(() => {
-    onLoad();
-  }, []);
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
+import { Provider as ReduxProvider } from 'react-redux';
+import { PersistGate } from 'redux-persist/lib/integration/react';
+// material
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
+import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
+// redux
+import { store, persistor } from './redux/store';
+// contexts
+import { SettingsProvider } from './contexts/SettingsContext';
+// components
+import LoadingScreen from './components/LoadingScreen';
 
-  async function onLoad() {
-    try {
-      await Auth.currentUserInfo();
-      userHasAuthenticated(true);
-    } catch (e) {
-      if (e !== "No current user") {
-        alert(e);
-      }
-    }
+// Check our docs
+// https://minimal-docs.vercel.app/authentication/ts-version
 
-    setIsAuthenticating(false);
-  }
+import { AuthProvider } from './contexts/JWTContext';
+// import { AuthProvider } from './contexts/AwsCognitoContext';
+// import { AuthProvider } from './contexts/Auth0Context';
+// import { AuthProvider } from './contexts/FirebaseContext';
 
-  const props = {
-    isAuthenticated,
-    userHasAuthenticated,
-  };
+//
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
-  return (
-    <ApolloProvider client={client2 as any}>
-      <StyletronProvider value={engine}>
-        <BaseProvider theme={theme}>
-          <ChakraProvider>
-            <HashRouter>
-              {!isAuthenticating && (
-                  <Helmet>
-                    <title>{title}</title>
-                    <meta name="description" content="Planturion" />
-                  </Helmet>
-                ) && <Routes {...props} />}
-            </HashRouter>
-          </ChakraProvider>
-        </BaseProvider>
-      </StyletronProvider>
-    </ApolloProvider>
-  );
-}
+// ----------------------------------------------------------------------
 
 ReactDOM.render(
-  <App />,
-
-  document.getElementById("root")
+  <HelmetProvider>
+    <ReduxProvider store={store}>
+      <PersistGate loading={<LoadingScreen />} persistor={persistor}>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <SettingsProvider>
+            <BrowserRouter>
+              <AuthProvider>
+                <App />
+              </AuthProvider>
+            </BrowserRouter>
+          </SettingsProvider>
+        </LocalizationProvider>
+      </PersistGate>
+    </ReduxProvider>
+  </HelmetProvider>,
+  document.getElementById('root')
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
